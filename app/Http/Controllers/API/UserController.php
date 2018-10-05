@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller {
 	public function __construct() {
 		$this->middleware( 'auth:api' );
+
 	}
 
 	/**
@@ -131,6 +132,7 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function destroy( $id ) {
+		$this->authorize('isAdmin');
 		$user = User::findOrfail( $id );
 		$user->delete();
 

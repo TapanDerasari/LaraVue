@@ -155,6 +155,7 @@
                     })
                     .catch(() => {
                         this.$Progress.fail();
+                        swal('Oohh!', 'This is a unauthorized action.', 'warning');
                     });
             },
             updateUser() {
@@ -172,6 +173,7 @@
                         this.$Progress.finish();
                     }).catch(() => {
                     this.$Progress.fail();
+                    swal('Oohh!', 'This is a unauthorized action.', 'warning');
                 });
             },
             deleteUser(id) {
@@ -197,7 +199,7 @@
                                 // fire.$emit('refresh');
 
                             }).catch(() => {
-                            swal('Whoops!', 'something went wrong.', 'warning');
+                            swal('Oohh!', 'This is a unauthorized action.', 'warning');
                         });
                     }
                 })
