@@ -32,3 +32,7 @@ php artisan key:generate
 php artisan config:clear
 
 php artisan cache:clear
+
+
+
+# Keep Coding -Tapan Derasari
