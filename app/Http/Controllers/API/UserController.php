@@ -19,6 +19,7 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
+		$this->authorize('isAdmin');
 		return User::latest()->paginate( 10 );
 	}
 

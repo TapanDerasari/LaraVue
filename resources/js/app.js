@@ -50,6 +50,10 @@ Vue.use(VueProgressBar, {
 
 window.fire=new Vue();
 
+
+
+import gate from './gate';
+Vue.prototype.$gate= new gate(window.user);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -71,6 +75,10 @@ Vue.component(
 Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue')
+);
+Vue.component(
+    'not-found',
+    require('./components/notfound')
 );
 const app = new Vue({
     el: '#app',
