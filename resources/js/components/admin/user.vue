@@ -1,9 +1,9 @@
 <template>
     <div id="app" class="container">
-        <div class="row mt-5" v-if="!$gate.isAdmin()">
+        <div class="row mt-5" v-if="!$gate.isAdminOrAuthor()">
             <not-found></not-found>
         </div>
-        <div class="row mt-5" v-if="$gate.isAdmin()">
+        <div class="row mt-5" v-if="$gate.isAdminOrAuthor()">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
@@ -27,7 +27,7 @@
                                 <th>Registered_at</th>
                                 <th>Action</th>
                             </tr>
-                            <tr v-for="(user, index) in users" :key="index">
+                            <tr v-for="(user, index) in users.data" :key="index">
                                 <td>{{++index}}</td>
                                 <td>{{user.name}}</td>
                                 <td>{{user.email}}</td>
@@ -44,6 +44,9 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                    <div class="card-footer">
+                        <pagination  :data="users" v-on:pagination-change-page="getResults"></pagination>
+                    </div>
                 </div>
                 <!-- /.card -->
             </div>
@@ -127,9 +130,20 @@
             }
         },
         methods: {
+            getResults(page) {
+                if (typeof page === 'undefined') {
+                    page = 1;
+                }
+
+                // Using vue-resource as an example
+                axios.get('api/user?page=' + page)
+                    .then(response => {
+                         this.users = response.data;
+                });
+            },
             loadUsers() {
-                if(this.$gate.isAdmin()){
-                    axios.get('api/user').then(({data}) => this.users = data.data);
+                if(this.$gate.isAdminOrAuthor()){
+                    axios.get('api/user').then(({data}) => this.users = data);
                 }
             },
             addModel() {

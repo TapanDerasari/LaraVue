@@ -10,6 +10,7 @@ import developer from './components/admin/developer'
 import profile from './components/admin/profile'
 import task from './components/task'
 import user from './components/admin/user'
+import notfound from './components/notfound'
 
 Vue.use(Router)
 
@@ -31,6 +32,8 @@ export default new Router({
 
         {path: '/task', name: 'task', component: task},
 
-        {path: '/users', name: 'users', component: user}
+        {path: '/users', name: 'users', component: user},
+
+        {path: '*', name: 'users', component: notfound}
     ]
 })

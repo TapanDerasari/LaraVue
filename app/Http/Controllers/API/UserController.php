@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -19,8 +20,11 @@ class UserController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		$this->authorize('isAdmin');
-		return User::latest()->paginate( 10 );
+//		$this->authorize('isAdmin');
+		if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+			return User::latest()->paginate( 5 );
+		}
+
 	}
 
 	/**

@@ -80,6 +80,10 @@ Vue.component(
     'not-found',
     require('./components/notfound')
 );
+
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 const app = new Vue({
     el: '#app',
     router,
