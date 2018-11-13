@@ -28,12 +28,14 @@ export default new Router({
 
         {path: '/dashboard', name: 'dashboard', component: dashboard},
 
+        {path: '/', name: 'home', component: dashboard},
+
         {path: '/developer', name: 'developer', component: developer},
 
         {path: '/task', name: 'task', component: task},
 
         {path: '/users', name: 'users', component: user},
 
-        {path: '*', name: 'users', component: notfound}
+        {path: '*', name: 'any', component: notfound}
     ]
 })

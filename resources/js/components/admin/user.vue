@@ -229,7 +229,19 @@
             fire.$on('refresh', () => {
                 this.loadUsers();
             });
-        }
+            fire.$on('searching', () => {
+                let query= this.$parent.search;
+                axios.get('api/findUser?q='+query)
+                    .then(({data}) => this.users = data).catch(() => {
+                    toast({
+                        type: 'error',
+                        title: 'Something went wrong.'
+                    })
+                });
+            });
+        },
+
     }
+
 </script>
 <style></style>

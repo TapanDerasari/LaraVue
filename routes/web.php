@@ -22,6 +22,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/task', 'TaskController');
 Route::resource('/statuses', 'statusController');
 
+Route::get('/invoice', function () {
+	return view('invoice');
+});
 
 //Route::get('admin_area', ['middleware' => 'admin', function () {
 //	Route::get('{path}', 'HomeController@index')->name('path','([A-z\d-\/_.]+)?');
